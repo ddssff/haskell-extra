@@ -6,7 +6,7 @@ module Extra.Time
 import Control.Exception
 import Data.List
 import Data.Time
-import System.Locale
+import qualified System.Locale as SL
 import System.Time
 import Text.Printf
 
@@ -53,7 +53,7 @@ myTimeDiffToString diff =
         _ | isPrefixOf "00:" s -> drop 3 s
         _ -> s
     where
-      s = formatTimeDiff defaultTimeLocale "%T" diff
+      s = formatTimeDiff SL.defaultTimeLocale "%T" diff
       ms = ps2ms ps
       ps2ms ps = quot (ps + 500000000) 1000000000
       ps = tdPicosec diff
